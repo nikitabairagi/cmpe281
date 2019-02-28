@@ -1,0 +1,42 @@
+https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.90/bin/apache-tomcat-7.0.90.tar.gz
+
+
+#!/bin/sh
+# Tomcat init script for Linux.
+#
+# chkconfig: 2345 96 14
+# description: The Apache Tomcat servlet/JSP container.
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk.x86_64
+CATALINA_HOME=/usr/share/apache-tomcat-7.0.90
+export JAVA_HOME CATALINA_HOME
+exec $CATALINA_HOME/bin/catalina.sh $*
+
+
+<tomcat-users>
+<role rolename="manager-script"/>
+<role rolename="manager-jmx"/>
+<role rolename="manager-status"/>                    
+<role rolename="admin-gui"/>                    
+<role rolename="manager-gui"/>
+<user username="nikita" password="nikita123" 
+roles="manager-gui,manager-status,admin-gui"/>
+<user username="tomcattools" password="nikita123"/>
+</tomcat-users>
+
+d
+sudo service mysqld start
+sudo service mysqld stop
+sudo chkconfig mysqld on
+
+
+SELECT User,Host FROM mysql.user;
+DROP USER 'testuser'@'localhost';
+
+scp -i ~/Documents/Sem2/CMPE281/aws keypair/cmpe281-us-west-2.pem ~/Documents/Sem2/CMPE281/gumball-v1/build/libs/gumball-v1-1.0.war ec2-user@54.190.39.223:/usr/share/apache-tomcat-7.0.90/webappsc
+
+
+tomcat process kill - pkill -9 -f tomcat
+
+
+
+
